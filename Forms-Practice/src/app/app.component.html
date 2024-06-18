@@ -1,0 +1,54 @@
+<div class="form-container">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    
+    <div formGroupName="personalDetails">
+      <div class="form-group">
+        <label>Name:</label>
+        <input id="name" type="text" class="form-control" formControlName="name"/>
+      </div>
+  
+      <div class="form-group">
+        <label>Email:</label>
+        <input id="email" type="email" class="form-control" formControlName="email"/>
+      </div>
+  
+      <div class="form-group">
+        <label>Age:</label>
+        <input id="age" type="number" class="form-control" formControlName="age" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Gender:</label>
+      <select id="gender" class="form-control" formControlName="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- <div class="form-group">
+      <label>Hobbies:</label>
+      <div>
+        <label>
+          <input type="checkbox" id="hiking" formControlName="hobbies"/> Hiking
+        </label>
+        <label>
+          <input type="checkbox" id="swimming" formControlName="hobbies"/> Swimming
+        </label>
+        <label>
+          <input type="checkbox" id="reading" formControlName="hobbies"/> Reading
+        </label>
+      </div>
+    </div> -->
+
+    <div formArrayName="hobbies" class="form-group">
+      <label for="hobbies">Hobbies:</label>
+      <ng-template *ngFor="let hobby of hobbies.controls ; let i = index">
+        <input [formControlName] = "i" class="form-control" />
+      </ng-template>
+    </div>
+
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</div>
